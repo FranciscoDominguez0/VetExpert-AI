@@ -9,20 +9,13 @@ API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 ESPECIES = ["perro", "gato", "ave", "conejo", "roedor", "reptil", "caballo", "bovino", "porcino", "caprino", "ovino"]
 SINTOMAS = [
     ("vomitos", "Vómitos"), ("diarrea", "Diarrea"),
-    ("come_normalmente", "Come normalmente"), ("bebe_agua", "Bebe agua"),
     ("fiebre", "Fiebre"), ("dificultad_respiratoria", "Dificultad respiratoria"),
-    ("sangrado", "Sangrado"), ("puede_caminar", "Puede caminar"),
-    ("consciente", "Está consciente"), ("convulsiones", "Convulsiones"),
-    ("herida_visible", "Herida visible"), ("secrecion_nasal", "Secreción nasal"),
-    ("secrecion_ocular", "Secreción ocular"), ("inflamacion", "Inflamación"),
-    ("dolor", "Dolor"), ("debilidad", "Debilidad"), ("tos", "Tos"),
-    ("estornudos", "Estornudos"), ("abdomen_distendido", "Abdomen distendido"),
-    ("picazon", "Picazón"), ("perdida_pelo", "Pérdida de pelo"),
-    ("salivacion_excesiva", "Salivación excesiva"),
+    ("tos", "Tos"), ("puede_caminar", "Puede caminar normalmente"),
+    ("convulsiones", "Convulsiones"), ("herida_visible", "Herida visible"),
+    ("problemas_piel", "Picazón, irritación o pérdida de pelo"),
     ("dificultad_orinar", "Dificultad para orinar"),
-    ("cambio_color_orina", "Cambio de color en la orina"),
     ("exposicion_toxico", "Posible exposición a tóxico"),
-    ("parasitos_visibles", "Parásitos visibles"), ("perdida_peso", "Pérdida de peso"),
+    ("debilidad", "Debilidad o decaimiento"),
 ]
 
 ETIQUETAS_HECHOS = {
@@ -159,19 +152,24 @@ def consulta():
     encabezado()
     valores = {}
     with ui.column().classes("w-full max-w-5xl mx-auto p-6"):
-        ui.label("Nueva evaluación").classes("text-h4")
-        with ui.row().classes("w-full"):
-            nombre = ui.input("Nombre del animal").classes("grow")
-            especie = ui.select(ESPECIES, label="Especie").classes("grow")
-            edad = ui.number("Edad", min=0).classes("grow")
-            peso = ui.number("Peso en kg", min=0.01).classes("grow")
-        ui.label("Síntomas").classes("text-h5 mt-4")
-        with ui.grid(columns=3).classes("w-full"):
-            for clave, etiqueta in SINTOMAS:
-                valores[clave] = ui.select(
-                    {"desconocido": "Desconocido", "si": "Sí", "no": "No"},
-                    value="desconocido", label=etiqueta,
-                ).classes("w-full")
+        ui.label("Evaluación veterinaria").classes("text-h4 text-teal-900")
+        ui.label("Complete los datos básicos y responda 12 preguntas sobre los síntomas.").classes("text-grey-7")
+        with ui.card().classes("w-full"):
+            ui.label("Datos del animal").classes("text-h6 text-teal-900")
+            with ui.row().classes("w-full"):
+                nombre = ui.input("Nombre del animal").classes("grow")
+                especie = ui.select(ESPECIES, label="Especie").classes("grow")
+                edad = ui.number("Edad", min=0).classes("grow")
+                peso = ui.number("Peso en kg", min=0.01).classes("grow")
+        with ui.card().classes("w-full"):
+            ui.label("Síntomas observados").classes("text-h6 text-teal-900")
+            ui.label("Seleccione Sí, No o Desconocido en cada pregunta.").classes("text-sm text-grey-7")
+            with ui.grid(columns=2).classes("w-full gap-4"):
+                for clave, etiqueta in SINTOMAS:
+                    valores[clave] = ui.select(
+                        {"desconocido": "Desconocido", "si": "Sí", "no": "No"},
+                        value="desconocido", label=etiqueta,
+                    ).classes("w-full")
         resultado = ui.column().classes("w-full")
 
         async def evaluar():
@@ -231,24 +229,43 @@ async def historial():
 def reglas():
     encabezado()
     with ui.column().classes("w-full max-w-5xl mx-auto p-6"):
-        ui.label("Base de conocimiento generada por Gemini").classes("text-h4")
-        cantidad = ui.number("Cantidad de reglas", value=30, min=20, max=60)
+        ui.label("Generación de conocimiento con Gemini").classes("text-h4 text-teal-900")
+        ui.label(
+            "Gemini creará reglas veterinarias en formato JSON. El proceso puede tardar entre 20 y 90 segundos."
+        ).classes("text-grey-7")
+        with ui.card().classes("w-full"):
+            ui.label("Configuración").classes("text-h6")
+            cantidad = ui.number("Cantidad de reglas", value=20, min=20, max=60).classes("w-64")
+        estado = ui.row().classes("items-center gap-3 p-4 bg-blue-50 rounded w-full")
+        with estado:
+            ui.spinner("dots", size="lg", color="teal")
+            texto_estado = ui.label("Gemini está generando y organizando las reglas...").classes("text-teal-900 font-bold")
+        estado.set_visibility(False)
         salida = ui.column().classes("w-full")
 
         async def generar():
             boton.disable()
             salida.clear()
+            estado.set_visibility(True)
+            texto_estado.set_text("Gemini está generando y organizando las reglas...")
+            ui.notify("Generación iniciada. Espere mientras Gemini prepara el JSON.", type="info")
             try:
                 async with httpx.AsyncClient(timeout=120) as cliente:
                     respuesta = await cliente.post(f"{API_URL}/reglas/generar", json={"cantidad": int(cantidad.value), "reemplazar": True})
                     respuesta.raise_for_status()
                     datos = respuesta.json()
                 with salida:
-                    ui.label(f"Versión {datos['version']}: {datos['cantidad']} reglas generadas").classes("text-positive")
-                    ui.json_editor({"content": {"json": datos}}).classes("w-full")
+                    with ui.card().classes("w-full bg-green-50 border-l-4 border-green-600"):
+                        ui.icon("check_circle", color="green").classes("text-3xl")
+                        ui.label("Reglas generadas correctamente").classes("text-h6 text-green-900")
+                        ui.label(f"Versión {datos['version']} · {datos['cantidad']} reglas disponibles")
+                    with ui.expansion("Ver JSON generado", icon="data_object").classes("w-full"):
+                        ui.json_editor({"content": {"json": datos}}).classes("w-full")
+                ui.notify("La base de conocimiento fue actualizada.", type="positive")
             except Exception as exc:
                 ui.notify(f"Error al generar reglas: {exc}", type="negative")
             finally:
+                estado.set_visibility(False)
                 boton.enable()
 
         boton = ui.button("Generar reglas con Gemini", on_click=generar, icon="auto_awesome")

@@ -16,13 +16,9 @@ ESPECIES = [
     "bovino", "porcino", "caprino", "ovino", "cualquier_especie",
 ]
 HECHOS = [
-    "edad", "peso", "vomitos", "diarrea", "come_normalmente", "bebe_agua",
-    "fiebre", "dificultad_respiratoria", "tos", "estornudos", "sangrado",
-    "puede_caminar", "consciente", "convulsiones", "herida_visible",
-    "secrecion_nasal", "secrecion_ocular", "inflamacion", "dolor", "debilidad",
-    "abdomen_distendido", "picazon", "perdida_pelo", "salivacion_excesiva",
-    "dificultad_orinar", "cambio_color_orina", "exposicion_toxico",
-    "parasitos_visibles", "perdida_peso", "perdida_liquidos",
+    "edad", "peso", "vomitos", "diarrea", "fiebre", "dificultad_respiratoria",
+    "tos", "puede_caminar", "convulsiones", "herida_visible", "problemas_piel",
+    "dificultad_orinar", "exposicion_toxico", "debilidad", "perdida_liquidos",
     "sindrome_digestivo", "sindrome_respiratorio", "sindrome_cutaneo",
     "sindrome_neurologico", "sindrome_urinario", "sindrome_traumatico",
     "posible_gastroenteritis", "posible_deshidratacion", "posible_parasitosis",
@@ -44,6 +40,7 @@ No indiques medicamentos, dosis ni tratamientos.
 
 Especies permitidas: {ESPECIES}
 Hechos permitidos: {HECHOS}
+No utilices ningún hecho que no aparezca en la lista de hechos permitidos.
 Operadores permitidos: igual, distinto, mayor, mayor_igual, menor, menor_igual, en.
 Cada id debe ir desde R001 en adelante, sin repetirse. Incluye al menos dos cadenas
 de tres reglas usando los hechos intermedios "sindrome_...". La prioridad de la
