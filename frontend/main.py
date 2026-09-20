@@ -130,12 +130,35 @@ def mostrar_resultado(datos, contenedor):
 
 
 def encabezado():
-    with ui.header().classes("bg-teal-800"):
-        ui.label("VetExpert AI").classes("text-h5")
-        ui.link("Inicio", "/").classes("text-white")
-        ui.link("Nueva consulta", "/consulta").classes("text-white")
-        ui.link("Historial", "/historial").classes("text-white")
-        ui.link("Reglas IA", "/reglas").classes("text-white")
+    def opcion(ruta, icono, texto):
+        ui.button(
+            texto,
+            icon=icono,
+            on_click=lambda ruta=ruta: ui.navigate.to(ruta),
+        ).props("flat no-caps color=white").classes(
+            "px-3 whitespace-nowrap"
+        ).style("min-width: auto;")
+
+    with ui.header().classes("bg-teal-900 text-white shadow-lg px-6 py-2"):
+        with ui.element("div").classes("w-full items-center").style(
+            "display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;"
+        ):
+            with ui.row().classes("items-center justify-start no-wrap gap-3"):
+                with ui.element("div").classes(
+                    "flex items-center justify-center w-10 h-10 rounded-lg bg-white/15"
+                ):
+                    ui.icon("pets").classes("text-2xl text-white")
+                with ui.column().classes("gap-0"):
+                    ui.label("VetExpert AI").classes("text-xl font-bold tracking-wide")
+                    ui.label("Sistema experto veterinario").classes("text-xs text-teal-100")
+
+            with ui.row().classes("items-center justify-center no-wrap gap-2"):
+                opcion("/", "home", "Inicio")
+                opcion("/consulta", "add_circle_outline", "Nueva consulta")
+                opcion("/historial", "history", "Historial")
+                opcion("/reglas", "psychology", "Reglas IA")
+
+            ui.element("div")
 
 
 @ui.page("/")
