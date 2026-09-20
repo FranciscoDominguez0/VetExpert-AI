@@ -1,0 +1,1009 @@
+{
+  "version": "20260920-220700",
+  "fecha_generacion": "2026-09-20T22:07:00.084385+00:00",
+  "modelo": "gemini-2.5-flash",
+  "cantidad": 30,
+  "estado": "activa",
+  "reglas": [
+    {
+      "id": "R001",
+      "categoria": "sindrome_digestivo",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identificación de síndrome digestivo por vómitos y diarrea.",
+      "condiciones": [
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_digestivo",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 3,
+      "explicacion": "Vómitos y diarrea son signos clave de un trastorno digestivo.",
+      "fuente": "Manual Merck de Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R002",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible gastroenteritis ante síndrome digestivo y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_digestivo",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_gastroenteritis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La fiebre en un síndrome digestivo sugiere un proceso inflamatorio o infeccioso.",
+      "fuente": "Clínica de Pequeños Animales",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R003",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible obstrucción digestiva ante síndrome digestivo, vómitos y abdomen distendido.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_digestivo",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "abdomen_distendido",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_obstruccion_digestiva",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "La distensión abdominal junto a un síndrome digestivo y vómitos podría indicar una obstrucción.",
+      "fuente": "Cirugía Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R004",
+      "categoria": "sindrome_respiratorio",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identificación de síndrome respiratorio por dificultad respiratoria y tos.",
+      "condiciones": [
+        {
+          "hecho": "dificultad_respiratoria",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "tos",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_respiratorio",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 3,
+      "explicacion": "La tos y dificultad respiratoria son indicativos de un problema en el sistema respiratorio.",
+      "fuente": "Tratado de Medicina Interna Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R005",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible infección respiratoria ante síndrome respiratorio y estornudos.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_respiratorio",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "estornudos",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_respiratoria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "Los estornudos combinados con un síndrome respiratorio apuntan a una infección.",
+      "fuente": "Enfermedades Respiratorias en Animales",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R006",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible neumonía ante síndrome respiratorio, fiebre y dificultad respiratoria.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_respiratorio",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "dificultad_respiratoria",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_neumonia",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "La dificultad respiratoria severa y fiebre en un síndrome respiratorio son signos de neumonía.",
+      "fuente": "Patología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R007",
+      "categoria": "sindrome_cutaneo",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identificación de síndrome cutáneo por picazón y pérdida de pelo.",
+      "condiciones": [
+        {
+          "hecho": "picazon",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_pelo",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_cutaneo",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 3,
+      "explicacion": "Picazón y pérdida de pelo son síntomas comunes de afecciones cutáneas.",
+      "fuente": "Dermatología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R008",
+      "categoria": "enfermedad_cutanea",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible infestación externa ante síndrome cutáneo y parásitos visibles.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_cutaneo",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "parasitos_visibles",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infestacion_externa",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La presencia de parásitos visibles en un cuadro cutáneo confirma una infestación externa.",
+      "fuente": "Parasitología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R009",
+      "categoria": "enfermedad_cutanea",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible dermatitis ante síndrome cutáneo e inflamación de la piel.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_cutaneo",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "inflamacion",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_dermatitis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "La inflamación cutánea asociada a picazón y pérdida de pelo sugiere dermatitis.",
+      "fuente": "Dermatología Clínica de Pequeños Animales",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R010",
+      "categoria": "sindrome_urinario",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identificación de síndrome urinario por dificultad al orinar.",
+      "condiciones": [
+        {
+          "hecho": "dificultad_orinar",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_urinario",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 3,
+      "explicacion": "La dificultad para orinar es un signo principal de problemas urinarios.",
+      "fuente": "Nefrología y Urología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R011",
+      "categoria": "sindrome_urinario",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identificación de síndrome urinario por cambio de color de orina.",
+      "condiciones": [
+        {
+          "hecho": "cambio_color_orina",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_urinario",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 3,
+      "explicacion": "Un cambio en el color de la orina es un indicador de un posible problema urinario.",
+      "fuente": "Nefrología y Urología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R012",
+      "categoria": "enfermedad_urinaria",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible infección urinaria ante síndrome urinario y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_urinario",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_urinaria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La fiebre en un síndrome urinario es un fuerte indicativo de infección.",
+      "fuente": "Urología en Pequeños Animales",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R013",
+      "categoria": "sindrome_neurologico",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identificación de síndrome neurológico por convulsiones.",
+      "condiciones": [
+        {
+          "hecho": "convulsiones",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_neurologico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 4,
+      "explicacion": "Las convulsiones son un signo claro de disfunción neurológica.",
+      "fuente": "Neurología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R014",
+      "categoria": "enfermedad_neurologica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible problema neurológico ante síndrome neurológico y falta de conciencia.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_neurologico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "consciente",
+          "operador": "igual",
+          "valor": false
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_problema_neurologico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "La falta de conciencia junto a convulsiones sugiere un problema neurológico grave.",
+      "fuente": "Atlas de Neurología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R015",
+      "categoria": "sindrome_traumatico",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identificación de síndrome traumático por herida visible y dolor.",
+      "condiciones": [
+        {
+          "hecho": "herida_visible",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "dolor",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_traumatico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 4,
+      "explicacion": "Una herida visible acompañada de dolor es un claro indicio de trauma.",
+      "fuente": "Traumatología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R016",
+      "categoria": "enfermedad_traumatica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible lesión traumática ante síndrome traumático y debilidad.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_traumatico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_lesion_traumatica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "La debilidad en un contexto traumático puede indicar una lesión significativa.",
+      "fuente": "Medicina de Urgencias y Cuidados Críticos en Pequeños Animales",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R017",
+      "categoria": "enfermedad_traumatica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible fractura ante síndrome traumático y dificultad para caminar.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_traumatico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "puede_caminar",
+          "operador": "igual",
+          "valor": false
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_fractura",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "La incapacidad para caminar después de un trauma es altamente sugestiva de fractura.",
+      "fuente": "Ortopedia Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R018",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible deshidratación ante vómitos, diarrea y pérdida de líquidos.",
+      "condiciones": [
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_liquidos",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_deshidratacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Vómitos y diarrea con pérdida de líquidos significativa llevan a deshidratación.",
+      "fuente": "Fluidoterapia Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R019",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible parasitosis ante diarrea, pérdida de peso y parásitos visibles.",
+      "condiciones": [
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_peso",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "parasitos_visibles",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_parasitosis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Diarrea, pérdida de peso y parásitos visibles son indicativos de parasitosis.",
+      "fuente": "Parasitología Clínica Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R020",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible intoxicación ante exposición a tóxico y síntomas neurológicos o digestivos agudos.",
+      "condiciones": [
+        {
+          "hecho": "exposicion_toxico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "convulsiones",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_intoxicacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "La exposición a tóxicos con síntomas agudos digestivos y neurológicos es una señal de intoxicación.",
+      "fuente": "Toxicología Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R021",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "perro"
+      ],
+      "descripcion": "Posible infección respiratoria en perros jóvenes con tos y secreción nasal.",
+      "condiciones": [
+        {
+          "hecho": "edad",
+          "operador": "menor",
+          "valor": 1
+        },
+        {
+          "hecho": "tos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "secrecion_nasal",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_respiratoria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "En cachorros, la tos y secreción nasal son comunes en infecciones respiratorias.",
+      "fuente": "Pediatría Canina",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R022",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "gato"
+      ],
+      "descripcion": "Posible gastroenteritis en gatos con vómitos, diarrea y falta de apetito.",
+      "condiciones": [
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "come_normalmente",
+          "operador": "igual",
+          "valor": false
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_gastroenteritis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Vómitos, diarrea y anorexia en gatos sugieren gastroenteritis.",
+      "fuente": "Medicina Felina",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R023",
+      "categoria": "enfermedad_cutanea",
+      "especies_aplicables": [
+        "conejo"
+      ],
+      "descripcion": "Posible sarna en conejos con picazón intensa y pérdida de pelo localizada.",
+      "condiciones": [
+        {
+          "hecho": "picazon",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_pelo",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infestacion_externa",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Picazón y pérdida de pelo en conejos a menudo se relaciona con ectoparásitos.",
+      "fuente": "Medicina de Conejos y Roedores",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R024",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "ave"
+      ],
+      "descripcion": "Posible enfermedad sistémica en aves con debilidad, pérdida de peso y dificultad respiratoria.",
+      "condiciones": [
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_peso",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "dificultad_respiratoria",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_enfermedad_sistemica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Debilidad, pérdida de peso y dificultad respiratoria en aves apuntan a una enfermedad sistémica.",
+      "fuente": "Medicina Aviar",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R025",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "bovino"
+      ],
+      "descripcion": "Posible parasitosis gastrointestinal en bovinos con diarrea y pérdida de peso.",
+      "condiciones": [
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_peso",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_parasitosis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "Diarrea y pérdida de peso en bovinos son signos clásicos de parasitosis gastrointestinal.",
+      "fuente": "Medicina Bovina",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R026",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "porcino"
+      ],
+      "descripcion": "Posible infección respiratoria en porcinos con tos, estornudos y secreción nasal.",
+      "condiciones": [
+        {
+          "hecho": "tos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "estornudos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "secrecion_nasal",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_respiratoria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La triada de tos, estornudos y secreción nasal en cerdos es común en enfermedades respiratorias.",
+      "fuente": "Patología Porcina",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R027",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "ovino"
+      ],
+      "descripcion": "Posible gastroenteritis parasitaria en ovinos con diarrea y debilidad.",
+      "condiciones": [
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_gastroenteritis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Diarrea y debilidad en ovinos, especialmente en rebaños, sugieren gastroenteritis parasitaria.",
+      "fuente": "Medicina Ovina y Caprina",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R028",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "caballo"
+      ],
+      "descripcion": "Posible obstrucción digestiva (cólico) en caballos con abdomen distendido y falta de apetito.",
+      "condiciones": [
+        {
+          "hecho": "abdomen_distendido",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "come_normalmente",
+          "operador": "igual",
+          "valor": false
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_obstruccion_digestiva",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Distensión abdominal y falta de apetito en caballos son signos de cólico, que puede llevar a obstrucción.",
+      "fuente": "Medicina Equina de Campo",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R029",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible enfermedad sistémica por fiebre persistente, debilidad generalizada y falta de apetito.",
+      "condiciones": [
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "come_normalmente",
+          "operador": "igual",
+          "valor": false
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_enfermedad_sistemica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Fiebre persistente y debilidad general, junto con anorexia, son indicadores de una enfermedad sistémica.",
+      "fuente": "Fundamentos de la Clínica Veterinaria",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R030",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Posible deshidratación severa por vómitos, diarrea y baja ingesta de agua.",
+      "condiciones": [
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "bebe_agua",
+          "operador": "igual",
+          "valor": false
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_deshidratacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Vómitos y diarrea con rechazo a beber agua rápidamente conducen a deshidratación severa.",
+      "fuente": "Emergencias y Cuidados Intensivos Veterinarios",
+      "generada_por": "gemini",
+      "estado": "activa"
+    }
+  ]
+}
