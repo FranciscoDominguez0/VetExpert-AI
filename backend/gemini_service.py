@@ -30,19 +30,19 @@ HECHOS = [
 ]
 
 
-def _prompt(cantidad: int) -> str:
+def _prompt(cantidad: int, inicio_id: int = 1, restriccion: str = "") -> str:
     return f"""
 Genera una base de conocimiento para un sistema experto veterinario académico
 multiespecie. Produce exactamente {cantidad} reglas distintas que identifiquen
 posibles enfermedades o condiciones a partir de síntomas. Todas las conclusiones
 deben expresarse como hipótesis con hechos cuyo nombre comience por "posible_".
-No indiques medicamentos, dosis ni tratamientos.
+No indiques medicamentos, dosis ni tratamientos.{restriccion}
 
 Especies permitidas: {ESPECIES}
 Hechos permitidos: {HECHOS}
 No utilices ningún hecho que no aparezca en la lista de hechos permitidos.
 Operadores permitidos: igual, distinto, mayor, mayor_igual, menor, menor_igual, en.
-Cada id debe ir desde R001 en adelante, sin repetirse. Incluye al menos dos cadenas
+Cada id debe ir desde R{inicio_id:03d} en adelante, sin repetirse. Incluye al menos dos cadenas
 de tres reglas usando los hechos intermedios "sindrome_...". La prioridad de la
 regla será de 1 a 10 y solo controla el orden interno de inferencia. No generes
 resultados como emergencia, urgente, atención prioritaria, nivel de atención u
@@ -55,7 +55,7 @@ Devuelve un objeto JSON con esta estructura exacta:
 {{
   "reglas": [
     {{
-      "id": "R001",
+      "id": "R{inicio_id:03d}",
       "categoria": "enfermedad_digestiva",
       "especies_aplicables": ["cualquier_especie"],
       "descripcion": "Descripción corta",
@@ -86,7 +86,32 @@ No agregues Markdown, comentarios ni texto fuera del JSON.
 """
 
 
-def generar_reglas(cantidad: int = 30) -> BaseReglas:
+def generar_reglas(cantidad: int = 30, reemplazar: bool = True) -> BaseReglas:
+    inicio_id = 1
+    restriccion = ""
+    reglas_antiguas = []
+    
+    if not reemplazar and RUTA_REGLAS.exists():
+        try:
+            base_actual = BaseReglas.model_validate_json(RUTA_REGLAS.read_text(encoding="utf-8"))
+            reglas_antiguas = [r.model_dump() for r in base_actual.reglas]
+            
+            ids = [int(r["id"][1:]) for r in reglas_antiguas if r["id"].startswith("R") and r["id"][1:].isdigit()]
+            if ids:
+                inicio_id = max(ids) + 1
+                
+            conclusiones = set()
+            for r in reglas_antiguas:
+                for res in r.get("resultados", []):
+                    if res["hecho"].startswith("posible_"):
+                        conclusiones.add(res["hecho"])
+            
+            if conclusiones:
+                restriccion = f"\n\nMUY IMPORTANTE: EVITA a toda costa generar reglas que concluyan en las siguientes condiciones que ya existen en la base: {', '.join(conclusiones)}."
+                
+        except Exception:
+            pass
+
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise RuntimeError("Falta GEMINI_API_KEY en el archivo .env")
@@ -94,7 +119,7 @@ def generar_reglas(cantidad: int = 30) -> BaseReglas:
     cliente = genai.Client(api_key=api_key)
     respuesta = cliente.models.generate_content(
         model=modelo,
-        contents=_prompt(cantidad),
+        contents=_prompt(cantidad, inicio_id, restriccion),
         config={
             "response_mime_type": "application/json",
             "temperature": 0.8,
@@ -102,9 +127,21 @@ def generar_reglas(cantidad: int = 30) -> BaseReglas:
     )
     contenido = json.loads(respuesta.text)
     if isinstance(contenido, list):
-        reglas = contenido
+        reglas_nuevas = contenido
     else:
-        reglas = contenido.get("reglas", [])
+        reglas_nuevas = contenido.get("reglas", [])
+        
+    ids_usados = {r["id"] for r in reglas_antiguas}
+    for r in reglas_nuevas:
+        if not isinstance(r, dict):
+            continue
+        if r.get("id") in ids_usados or not r.get("id", "").startswith("R"):
+            r["id"] = f"R{inicio_id:03d}"
+            inicio_id += 1
+        ids_usados.add(r["id"])
+        
+    reglas = reglas_antiguas + [r for r in reglas_nuevas if isinstance(r, dict)]
+
     datos = {
         "version": datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S"),
         "fecha_generacion": datetime.now(timezone.utc).isoformat(),

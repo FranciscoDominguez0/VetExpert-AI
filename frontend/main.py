@@ -235,15 +235,49 @@ async def historial():
     encabezado()
     with ui.column().classes("w-full max-w-5xl mx-auto p-6"):
         ui.label("Historial de consultas").classes("text-h4")
+        
+        dialog = ui.dialog()
+        with dialog, ui.card().classes("w-full max-w-4xl"):
+            with ui.row().classes("w-full justify-between items-center mb-4"):
+                ui.label("Detalle de la evaluación").classes("text-h6 text-teal-900")
+                ui.button(icon="close", on_click=dialog.close).props("flat round dense")
+            detalle_contenedor = ui.column().classes("w-full gap-4")
+
+        async def ver_detalle(e):
+            consulta_id = e.args["id"]
+            try:
+                async with httpx.AsyncClient(timeout=10) as cliente:
+                    respuesta = await cliente.get(f"{API_URL}/consultas/{consulta_id}")
+                    respuesta.raise_for_status()
+                    datos = respuesta.json()
+                
+                detalle_contenedor.clear()
+                resultado = datos["resultado"]
+                resultado["id"] = datos["id"]
+                mostrar_resultado(resultado, detalle_contenedor)
+                dialog.open()
+            except Exception as exc:
+                ui.notify(f"Error al cargar detalle: {exc}", type="negative")
+
         try:
             async with httpx.AsyncClient(timeout=10) as cliente:
                 filas = (await cliente.get(f"{API_URL}/consultas")).json()
-            ui.table(columns=[
+            
+            tabla = ui.table(columns=[
                 {"name": "id", "label": "ID", "field": "id"},
                 {"name": "fecha", "label": "Fecha", "field": "fecha"},
                 {"name": "nombre_animal", "label": "Animal", "field": "nombre_animal"},
                 {"name": "especie", "label": "Especie", "field": "especie"},
+                {"name": "accion", "label": "Acción", "field": "accion"},
             ], rows=filas, row_key="id").classes("w-full")
+            
+            tabla.add_slot('body-cell-accion', '''
+                <q-td :props="props">
+                    <q-btn flat icon="visibility" color="teal" @click="() => $parent.$emit('ver', props.row)" />
+                </q-td>
+            ''')
+            tabla.on('ver', ver_detalle)
+            
         except Exception:
             ui.label("No fue posible cargar el historial.").classes("text-red")
 
@@ -258,7 +292,9 @@ def reglas():
         ).classes("text-grey-7")
         with ui.card().classes("w-full"):
             ui.label("Configuración").classes("text-h6")
-            cantidad = ui.number("Cantidad de reglas", value=20, min=20, max=60).classes("w-64")
+            with ui.row().classes("items-center gap-4"):
+                cantidad = ui.number("Cantidad de reglas", value=20, min=20, max=60).classes("w-64")
+                reemplazar = ui.checkbox("Reemplazar reglas existentes", value=False)
         estado = ui.row().classes("items-center gap-3 p-4 bg-blue-50 rounded w-full")
         with estado:
             ui.spinner("dots", size="lg", color="teal")
@@ -274,7 +310,7 @@ def reglas():
             ui.notify("Generación iniciada. Espere mientras Gemini prepara el JSON.", type="info")
             try:
                 async with httpx.AsyncClient(timeout=120) as cliente:
-                    respuesta = await cliente.post(f"{API_URL}/reglas/generar", json={"cantidad": int(cantidad.value), "reemplazar": True})
+                    respuesta = await cliente.post(f"{API_URL}/reglas/generar", json={"cantidad": int(cantidad.value), "reemplazar": reemplazar.value})
                     respuesta.raise_for_status()
                     datos = respuesta.json()
                 with salida:

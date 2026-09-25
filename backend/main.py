@@ -34,7 +34,7 @@ def reglas():
 @app.post("/reglas/generar")
 def generar(datos: GenerarReglasEntrada):
     try:
-        return generar_reglas(datos.cantidad)
+        return generar_reglas(datos.cantidad, datos.reemplazar)
     except Exception as exc:
         raise HTTPException(status_code=502, detail=f"No se pudieron generar reglas: {exc}") from exc
 

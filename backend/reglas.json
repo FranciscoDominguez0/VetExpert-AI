@@ -1,17 +1,17 @@
 {
-  "version": "20260920-222537",
-  "fecha_generacion": "2026-09-20T22:25:37.222955+00:00",
+  "version": "20260920-224835",
+  "fecha_generacion": "2026-09-20T22:48:35.004779+00:00",
   "modelo": "gemini-2.5-flash",
-  "cantidad": 20,
+  "cantidad": 60,
   "estado": "activa",
   "reglas": [
     {
       "id": "R001",
-      "categoria": "sindrome_digestivo_intermedio",
+      "categoria": "sindrome",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Identifica un síndrome digestivo a partir de vómitos y diarrea.",
+      "descripcion": "Identifica la presencia de un síndrome digestivo caracterizado por vómitos y diarrea.",
       "condiciones": [
         {
           "hecho": "vomitos",
@@ -30,9 +30,9 @@
           "valor": true
         }
       ],
-      "recomendacion": "Continuar evaluando otros síntomas para determinar la causa subyacente del síndrome digestivo.",
-      "prioridad": 9,
-      "explicacion": "Vómitos y diarrea son signos cardinales de un trastorno gastrointestinal.",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 1,
+      "explicacion": "La combinación de vómitos y diarrea es un fuerte indicador de un síndrome digestivo.",
       "fuente": "Manual Merck de Veterinaria",
       "generada_por": "gemini",
       "estado": "activa"
@@ -43,39 +43,7 @@
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Sugiere gastroenteritis si hay síndrome digestivo y fiebre.",
-      "condiciones": [
-        {
-          "hecho": "sindrome_digestivo",
-          "operador": "igual",
-          "valor": true
-        },
-        {
-          "hecho": "fiebre",
-          "operador": "igual",
-          "valor": true
-        }
-      ],
-      "resultados": [
-        {
-          "hecho": "posible_gastroenteritis",
-          "valor": true
-        }
-      ],
-      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar gastroenteritis y manejar la fiebre.",
-      "prioridad": 8,
-      "explicacion": "La presencia de fiebre junto a signos digestivos es indicativa de un proceso inflamatorio o infeccioso gastrointestinal.",
-      "fuente": "Clínicas Veterinarias de Norteamérica: Pequeños Animales",
-      "generada_por": "gemini",
-      "estado": "activa"
-    },
-    {
-      "id": "R003",
-      "categoria": "condicion_general",
-      "especies_aplicables": [
-        "cualquier_especie"
-      ],
-      "descripcion": "Indica deshidratación si hay síndrome digestivo con pérdida de líquidos.",
+      "descripcion": "Sospecha de deshidratación grave en presencia de síndrome digestivo, pérdida de líquidos y debilidad.",
       "condiciones": [
         {
           "hecho": "sindrome_digestivo",
@@ -86,6 +54,11 @@
           "hecho": "perdida_liquidos",
           "operador": "igual",
           "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
         }
       ],
       "resultados": [
@@ -94,20 +67,58 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria urgente para evaluar el grado de deshidratación y planificar rehidratación.",
-      "prioridad": 8,
-      "explicacion": "Vómitos y diarrea prolongados con pérdida de líquidos pueden llevar rápidamente a la deshidratación.",
-      "fuente": "Revista de Medicina Veterinaria Interna",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "La combinación de signos digestivos con pérdida de líquidos y debilidad es un fuerte indicador de deshidratación.",
+      "fuente": "Veterinary Internal Medicine (Ettinger & Feldman)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R003",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Indica posible obstrucción digestiva ante síndrome digestivo severo, vómitos y dificultad para moverse.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_digestivo",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "puede_caminar",
+          "operador": "igual",
+          "valor": false
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_obstruccion_digestiva",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Vómitos persistentes en un animal con síndrome digestivo y debilidad motora pueden sugerir una obstrucción.",
+      "fuente": "Small Animal Surgery (Fossum)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
       "id": "R004",
-      "categoria": "sindrome_respiratorio_intermedio",
+      "categoria": "sindrome",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Identifica un síndrome respiratorio a partir de dificultad respiratoria y tos.",
+      "descripcion": "Identifica la presencia de un síndrome respiratorio caracterizado por dificultad respiratoria y tos.",
       "condiciones": [
         {
           "hecho": "dificultad_respiratoria",
@@ -126,10 +137,10 @@
           "valor": true
         }
       ],
-      "recomendacion": "Continuar evaluando otros síntomas para determinar la causa subyacente del síndrome respiratorio.",
-      "prioridad": 9,
-      "explicacion": "La dificultad respiratoria y la tos son signos comunes de afecciones del sistema respiratorio.",
-      "fuente": "Libro de Texto de Enfermedades Respiratorias de Pequeños Animales",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 1,
+      "explicacion": "Dificultad respiratoria y tos son signos cardinales de un problema respiratorio.",
+      "fuente": "Veterinary Clinics of North America: Small Animal Practice",
       "generada_por": "gemini",
       "estado": "activa"
     },
@@ -139,7 +150,7 @@
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Sugiere infección respiratoria si hay síndrome respiratorio y fiebre.",
+      "descripcion": "Sospecha de infección respiratoria en presencia de síndrome respiratorio y fiebre.",
       "condiciones": [
         {
           "hecho": "sindrome_respiratorio",
@@ -158,10 +169,10 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria para confirmar la infección y determinar el agente causal.",
-      "prioridad": 7,
-      "explicacion": "La fiebre en un cuadro respiratorio sugiere un proceso infeccioso.",
-      "fuente": "Fundamentos de Medicina Veterinaria Interna de Ettinger",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 5,
+      "explicacion": "La fiebre es un indicador común de infección acompañando a los signos respiratorios.",
+      "fuente": "Textbook of Veterinary Internal Medicine (Ettinger & Feldman)",
       "generada_por": "gemini",
       "estado": "activa"
     },
@@ -169,9 +180,11 @@
       "id": "R006",
       "categoria": "enfermedad_respiratoria",
       "especies_aplicables": [
-        "cualquier_especie"
+        "perro",
+        "gato",
+        "caballo"
       ],
-      "descripcion": "Sugiere neumonía si hay síndrome respiratorio, fiebre y debilidad.",
+      "descripcion": "Indica posible neumonía ante síndrome respiratorio persistente con tos y debilidad.",
       "condiciones": [
         {
           "hecho": "sindrome_respiratorio",
@@ -179,7 +192,7 @@
           "valor": true
         },
         {
-          "hecho": "fiebre",
+          "hecho": "tos",
           "operador": "igual",
           "valor": true
         },
@@ -195,20 +208,20 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria urgente para diagnóstico y tratamiento de la posible neumonía.",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
       "prioridad": 8,
-      "explicacion": "La combinación de signos respiratorios severos, fiebre y debilidad indica una enfermedad pulmonar más grave como la neumonía.",
-      "fuente": "Atlas de Radiología Torácica Veterinaria",
+      "explicacion": "Tos, dificultad respiratoria y debilidad son síntomas clásicos de neumonía, especialmente si son persistentes.",
+      "fuente": "Clinical Veterinary Medicine",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
       "id": "R007",
-      "categoria": "sindrome_cutaneo_intermedio",
+      "categoria": "sindrome",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Identifica un síndrome cutáneo a partir de problemas de piel.",
+      "descripcion": "Identifica la presencia de un síndrome cutáneo general.",
       "condiciones": [
         {
           "hecho": "problemas_piel",
@@ -222,20 +235,102 @@
           "valor": true
         }
       ],
-      "recomendacion": "Continuar evaluando la naturaleza específica de los problemas de piel.",
-      "prioridad": 9,
-      "explicacion": "Cualquier alteración en la piel se clasifica como un síndrome cutáneo para una evaluación posterior.",
-      "fuente": "Tratado de Dermatología Veterinaria de Miller",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 1,
+      "explicacion": "Cualquier problema visible en la piel se clasifica como síndrome cutáneo.",
+      "fuente": "Small Animal Dermatology (Muller & Kirk)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
       "id": "R008",
-      "categoria": "enfermedad_cutanea",
+      "categoria": "sindrome",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Sugiere dermatitis si hay un síndrome cutáneo sin herida visible.",
+      "descripcion": "Identifica la presencia de un síndrome neurológico general, manifestado por convulsiones.",
+      "condiciones": [
+        {
+          "hecho": "convulsiones",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_neurologico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 1,
+      "explicacion": "Las convulsiones son un signo claro de un posible problema neurológico.",
+      "fuente": "Handbook of Small Animal Neurology (Oliver & Lorenz)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R009",
+      "categoria": "sindrome",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identifica la presencia de un síndrome urinario general.",
+      "condiciones": [
+        {
+          "hecho": "dificultad_orinar",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_urinario",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 1,
+      "explicacion": "La dificultad para orinar es el síntoma principal de un síndrome urinario.",
+      "fuente": "Canine and Feline Nephrology and Urology (Osborne & Finco)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R010",
+      "categoria": "sindrome",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Identifica la presencia de un síndrome traumático general.",
+      "condiciones": [
+        {
+          "hecho": "herida_visible",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "sindrome_traumatico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 1,
+      "explicacion": "Cualquier herida visible indica un posible trauma.",
+      "fuente": "Veterinary Trauma and Critical Care (Silverstein & Hopper)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R011",
+      "categoria": "enfermedad_parasitaria",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Sospecha de parasitosis externa en animales jóvenes con problemas de piel.",
       "condiciones": [
         {
           "hecho": "sindrome_cutaneo",
@@ -243,9 +338,44 @@
           "valor": true
         },
         {
-          "hecho": "herida_visible",
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "cachorro",
+            "joven"
+          ]
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_parasitosis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 5,
+      "explicacion": "Los animales jóvenes son más susceptibles a parásitos externos que causan problemas cutáneos.",
+      "fuente": "Veterinary Parasitology (Foreyt)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R012",
+      "categoria": "enfermedad_dermatologica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible dermatitis infecciosa si hay problemas de piel y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_cutaneo",
           "operador": "igual",
-          "valor": false
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
         }
       ],
       "resultados": [
@@ -254,93 +384,28 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria para identificar la causa de la dermatitis.",
-      "prioridad": 7,
-      "explicacion": "La inflamación de la piel sin una lesión traumática evidente es comúnmente diagnosticada como dermatitis.",
-      "fuente": "Enciclopedia de Dermatología Veterinaria",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "La fiebre asociada a problemas cutáneos sugiere una causa infecciosa para la dermatitis.",
+      "fuente": "Small Animal Dermatology (Muller & Kirk)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
-      "id": "R009",
-      "categoria": "parasitosis_externa",
-      "especies_aplicables": [
-        "perro",
-        "gato",
-        "caballo"
-      ],
-      "descripcion": "Sugiere infestación externa si hay un síndrome cutáneo en especies susceptibles.",
-      "condiciones": [
-        {
-          "hecho": "sindrome_cutaneo",
-          "operador": "igual",
-          "valor": true
-        },
-        {
-          "hecho": "especie",
-          "operador": "en",
-          "valor": [
-            "perro",
-            "gato",
-            "caballo"
-          ]
-        }
-      ],
-      "resultados": [
-        {
-          "hecho": "posible_infestacion_externa",
-          "valor": true
-        }
-      ],
-      "recomendacion": "Solicitar evaluación veterinaria para identificar el parásito y aplicar tratamiento adecuado.",
-      "prioridad": 7,
-      "explicacion": "Las infestaciones por pulgas, garrapatas o ácaros son causas frecuentes de problemas cutáneos en estas especies.",
-      "fuente": "Guía Práctica de Parasitología Veterinaria",
-      "generada_por": "gemini",
-      "estado": "activa"
-    },
-    {
-      "id": "R010",
-      "categoria": "sindrome_neurologico_intermedio",
-      "especies_aplicables": [
-        "cualquier_especie"
-      ],
-      "descripcion": "Identifica un síndrome neurológico a partir de convulsiones y debilidad.",
-      "condiciones": [
-        {
-          "hecho": "convulsiones",
-          "operador": "igual",
-          "valor": true
-        },
-        {
-          "hecho": "debilidad",
-          "operador": "igual",
-          "valor": true
-        }
-      ],
-      "resultados": [
-        {
-          "hecho": "sindrome_neurologico",
-          "valor": true
-        }
-      ],
-      "recomendacion": "Continuar evaluando para identificar la causa específica del síndrome neurológico.",
-      "prioridad": 9,
-      "explicacion": "Convulsiones y debilidad son signos claros de un trastorno en el sistema nervioso.",
-      "fuente": "Neurología Veterinaria: Principios y Práctica",
-      "generada_por": "gemini",
-      "estado": "activa"
-    },
-    {
-      "id": "R011",
+      "id": "R013",
       "categoria": "enfermedad_neurologica",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Sugiere un problema neurológico si hay un síndrome neurológico.",
+      "descripcion": "Sospecha de problema neurológico de origen infeccioso o inflamatorio con fiebre.",
       "condiciones": [
         {
           "hecho": "sindrome_neurologico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
           "operador": "igual",
           "valor": true
         }
@@ -351,23 +416,55 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria especializada en neurología para diagnóstico preciso.",
-      "prioridad": 8,
-      "explicacion": "Un síndrome neurológico requiere una investigación profunda debido a la complejidad del sistema nervioso.",
-      "fuente": "Atlas de Neurología Clínica Veterinaria",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La fiebre junto con signos neurológicos puede indicar una encefalitis o meningitis.",
+      "fuente": "Small Animal Neurology (Oliver & Lorenz)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
-      "id": "R012",
-      "categoria": "sindrome_traumatico_intermedio",
+      "id": "R014",
+      "categoria": "enfermedad_urinaria",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Identifica un síndrome traumático a partir de una herida visible e incapacidad para caminar.",
+      "descripcion": "Indica posible infección urinaria si hay dificultad para orinar y fiebre.",
       "condiciones": [
         {
-          "hecho": "herida_visible",
+          "hecho": "sindrome_urinario",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_urinaria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "La fiebre es un indicador de infección en el tracto urinario.",
+      "fuente": "Canine and Feline Nephrology and Urology (Osborne & Finco)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R015",
+      "categoria": "enfermedad_traumatica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de fractura ante un trauma visible y la incapacidad de caminar.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_traumatico",
           "operador": "igual",
           "valor": true
         },
@@ -379,78 +476,24 @@
       ],
       "resultados": [
         {
-          "hecho": "sindrome_traumatico",
-          "valor": true
-        }
-      ],
-      "recomendacion": "Continuar evaluando la extensión y severidad de la lesión.",
-      "prioridad": 9,
-      "explicacion": "Una herida visible que impide la deambulación es un claro indicio de trauma.",
-      "fuente": "Principios de Cirugía Veterinaria",
-      "generada_por": "gemini",
-      "estado": "activa"
-    },
-    {
-      "id": "R013",
-      "categoria": "lesion_estructural",
-      "especies_aplicables": [
-        "perro",
-        "caballo",
-        "bovino",
-        "porcino",
-        "caprino",
-        "ovino"
-      ],
-      "descripcion": "Sugiere fractura si hay síndrome traumático en animales de peso considerable.",
-      "condiciones": [
-        {
-          "hecho": "sindrome_traumatico",
-          "operador": "igual",
-          "valor": true
-        },
-        {
-          "hecho": "peso",
-          "operador": "mayor",
-          "valor": 5
-        },
-        {
-          "hecho": "especie",
-          "operador": "en",
-          "valor": [
-            "perro",
-            "caballo",
-            "bovino",
-            "porcino",
-            "caprino",
-            "ovino"
-          ]
-        }
-      ],
-      "resultados": [
-        {
           "hecho": "posible_fractura",
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria con radiografías para confirmar la posible fractura.",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
       "prioridad": 8,
-      "explicacion": "En animales grandes, un trauma con incapacidad para caminar y herida visible aumenta la sospecha de fractura ósea.",
-      "fuente": "Traumatología y Ortopedia Veterinaria",
+      "explicacion": "Una herida visible con pérdida de función locomotora es un signo fuerte de fractura.",
+      "fuente": "Veterinary Surgery: Small Animal (Tobias & Johnston)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
-      "id": "R014",
-      "categoria": "lesion_estructural",
+      "id": "R016",
+      "categoria": "enfermedad_traumatica",
       "especies_aplicables": [
-        "perro",
-        "gato",
-        "ave",
-        "conejo",
-        "roedor",
-        "reptil"
+        "cualquier_especie"
       ],
-      "descripcion": "Sugiere lesión traumática si hay síndrome traumático en animales pequeños.",
+      "descripcion": "Confirma posible lesión traumática general ante síndrome traumático y herida visible.",
       "condiciones": [
         {
           "hecho": "sindrome_traumatico",
@@ -458,21 +501,9 @@
           "valor": true
         },
         {
-          "hecho": "peso",
-          "operador": "menor_igual",
-          "valor": 5
-        },
-        {
-          "hecho": "especie",
-          "operador": "en",
-          "valor": [
-            "perro",
-            "gato",
-            "ave",
-            "conejo",
-            "roedor",
-            "reptil"
-          ]
+          "hecho": "herida_visible",
+          "operador": "igual",
+          "valor": true
         }
       ],
       "resultados": [
@@ -481,20 +512,171 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria para diagnosticar la naturaleza y severidad de la lesión traumática.",
-      "prioridad": 7,
-      "explicacion": "En animales pequeños, un trauma con herida visible e incapacidad de caminar puede ser una fractura o una lesión de tejidos blandos.",
-      "fuente": "Medicina y Cirugía de Animales Exóticos",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 5,
+      "explicacion": "La presencia de una herida visible es la base para diagnosticar una lesión traumática.",
+      "fuente": "Veterinary Trauma and Critical Care (Silverstein & Hopper)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
-      "id": "R015",
+      "id": "R017",
+      "categoria": "enfermedad_parasitaria",
+      "especies_aplicables": [
+        "perro",
+        "gato",
+        "bovino",
+        "caprino",
+        "ovino"
+      ],
+      "descripcion": "Sospecha de parasitosis interna en animales jóvenes con síndrome digestivo y diarrea persistente.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_digestivo",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "cachorro",
+            "joven"
+          ]
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_parasitosis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "Animales jóvenes con diarrea crónica son altamente sospechosos de parasitosis intestinal.",
+      "fuente": "Veterinary Parasitology (Taylor, Coop, Wall)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R018",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Indica posible enfermedad sistémica en animales geriátricos con problemas urinarios y debilidad.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_urinario",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_enfermedad_sistemica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "En animales mayores, los problemas urinarios junto con debilidad pueden ser signos de una enfermedad sistémica subyacente.",
+      "fuente": "Textbook of Veterinary Internal Medicine (Ettinger & Feldman)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R019",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de deshidratación secundaria a esfuerzo respiratorio o fiebre.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_respiratorio",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_liquidos",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_deshidratacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 5,
+      "explicacion": "La dificultad respiratoria puede aumentar la pérdida de líquidos, llevando a deshidratación.",
+      "fuente": "Fluid, Electrolyte, and Acid-Base Disorders in Small Animal Practice (DiBartola)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R020",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible gastroenteritis aguda con vómitos, diarrea y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_gastroenteritis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Estos tres signos son clásicos de una inflamación aguda del tracto gastrointestinal.",
+      "fuente": "Small Animal Internal Medicine (Nelson & Couto)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R021",
       "categoria": "toxicologia",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Sugiere intoxicación si hay exposición a tóxicos y síntomas como vómitos o debilidad.",
+      "descripcion": "Sospecha de intoxicación por exposición a tóxicos y vómitos.",
       "condiciones": [
         {
           "hecho": "exposicion_toxico",
@@ -513,20 +695,189 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria urgente. Identificar el tóxico si es posible.",
-      "prioridad": 10,
-      "explicacion": "La exposición a una sustancia tóxica con signos clínicos agudos siempre debe considerarse una emergencia.",
-      "fuente": "Toxicología Veterinaria Aplicada",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Vómitos tras la exposición a una sustancia tóxica son un signo primario de intoxicación.",
+      "fuente": "Veterinary Toxicology (Peterson, Talcott, Mount)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
-      "id": "R016",
-      "categoria": "sindrome_urinario_intermedio",
+      "id": "R022",
+      "categoria": "toxicologia",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Identifica un síndrome urinario a partir de dificultad para orinar y fiebre.",
+      "descripcion": "Indica posible intoxicación grave si hay exposición a tóxicos y convulsiones.",
+      "condiciones": [
+        {
+          "hecho": "exposicion_toxico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "convulsiones",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_intoxicacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 10,
+      "explicacion": "Convulsiones tras una exposición a tóxicos sugieren una intoxicación con efectos neurológicos graves.",
+      "fuente": "Veterinary Toxicology (Peterson, Talcott, Mount)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R023",
+      "categoria": "enfermedad_neurologica",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Sospecha de problema neurológico congénito o infeccioso en animales jóvenes con convulsiones.",
+      "condiciones": [
+        {
+          "hecho": "convulsiones",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "cachorro",
+            "joven"
+          ]
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_problema_neurologico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Las convulsiones en animales jóvenes pueden ser indicativas de anomalías congénitas o infecciones tempranas.",
+      "fuente": "Small Animal Neurology (Oliver & Lorenz)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R024",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "ave",
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Indica posible infección respiratoria en aves o crías con dificultad respiratoria.",
+      "condiciones": [
+        {
+          "hecho": "dificultad_respiratoria",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "muy_joven",
+            "cachorro"
+          ]
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_respiratoria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "Los animales muy jóvenes y las aves son muy susceptibles a infecciones respiratorias.",
+      "fuente": "Avian Medicine (Ritchie, Harrison, Harrison)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R025",
+      "categoria": "enfermedad_dermatologica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de dermatitis severa o exudativa si hay problemas de piel con pérdida de líquidos.",
+      "condiciones": [
+        {
+          "hecho": "problemas_piel",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_liquidos",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_dermatitis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La pérdida de líquidos a través de la piel puede indicar una dermatitis exudativa o muy extensa.",
+      "fuente": "Small Animal Dermatology (Muller & Kirk)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R026",
+      "categoria": "enfermedad_traumatica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible lesión traumática severa si hay herida visible y debilidad generalizada.",
+      "condiciones": [
+        {
+          "hecho": "herida_visible",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_lesion_traumatica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "La debilidad acompañando a una herida visible puede indicar shock o una lesión grave subyacente.",
+      "fuente": "Veterinary Trauma and Critical Care (Silverstein & Hopper)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R027",
+      "categoria": "enfermedad_urinaria",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de infección urinaria o problema renal si hay dificultad para orinar y debilidad.",
       "condiciones": [
         {
           "hecho": "dificultad_orinar",
@@ -534,34 +885,7 @@
           "valor": true
         },
         {
-          "hecho": "fiebre",
-          "operador": "igual",
-          "valor": true
-        }
-      ],
-      "resultados": [
-        {
-          "hecho": "sindrome_urinario",
-          "valor": true
-        }
-      ],
-      "recomendacion": "Continuar evaluando para identificar la causa específica del síndrome urinario.",
-      "prioridad": 9,
-      "explicacion": "La dificultad urinaria con fiebre sugiere un proceso inflamatorio o infeccioso en el tracto urinario.",
-      "fuente": "Nefrología y Urología Veterinaria",
-      "generada_por": "gemini",
-      "estado": "activa"
-    },
-    {
-      "id": "R017",
-      "categoria": "enfermedad_urinaria",
-      "especies_aplicables": [
-        "cualquier_especie"
-      ],
-      "descripcion": "Sugiere infección urinaria si hay un síndrome urinario.",
-      "condiciones": [
-        {
-          "hecho": "sindrome_urinario",
+          "hecho": "debilidad",
           "operador": "igual",
           "valor": true
         }
@@ -572,72 +896,38 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria para confirmar la infección y realizar urocultivo.",
-      "prioridad": 8,
-      "explicacion": "La disuria y la fiebre son signos comunes de infección del tracto urinario.",
-      "fuente": "Atlas de Urología en Pequeños Animales",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Ambos síntomas juntos pueden ser un signo de una infección urinaria avanzada o un problema renal sistémico.",
+      "fuente": "Canine and Feline Nephrology and Urology (Osborne & Finco)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
-      "id": "R018",
-      "categoria": "enfermedad_digestiva",
+      "id": "R028",
+      "categoria": "enfermedad_parasitaria",
       "especies_aplicables": [
-        "perro"
+        "perro",
+        "gato",
+        "bovino",
+        "porcino"
       ],
-      "descripcion": "Sugiere obstrucción digestiva en perros jóvenes con vómitos sin diarrea.",
+      "descripcion": "Indica posible parasitosis interna severa en crías con bajo peso y debilidad.",
       "condiciones": [
         {
-          "hecho": "vomitos",
-          "operador": "igual",
-          "valor": true
+          "hecho": "peso",
+          "operador": "menor_igual",
+          "valor": 0.5
         },
         {
-          "hecho": "especie",
-          "operador": "igual",
-          "valor": "perro"
-        },
-        {
-          "hecho": "edad",
-          "operador": "menor",
-          "valor": 2
-        },
-        {
-          "hecho": "diarrea",
-          "operador": "igual",
-          "valor": false
-        }
-      ],
-      "resultados": [
-        {
-          "hecho": "posible_obstruccion_digestiva",
-          "valor": true
-        }
-      ],
-      "recomendacion": "Solicitar evaluación veterinaria urgente con estudios de imagen para descartar o confirmar obstrucción.",
-      "prioridad": 9,
-      "explicacion": "Vómitos persistentes sin diarrea en cachorros o perros jóvenes son un signo clásico de obstrucción por cuerpo extraño.",
-      "fuente": "Cirugía del Tracto Gastrointestinal de Pequeños Animales",
-      "generada_por": "gemini",
-      "estado": "activa"
-    },
-    {
-      "id": "R019",
-      "categoria": "parasitosis_interna",
-      "especies_aplicables": [
-        "cualquier_especie"
-      ],
-      "descripcion": "Sugiere parasitosis interna en animales jóvenes con diarrea.",
-      "condiciones": [
-        {
-          "hecho": "diarrea",
+          "hecho": "debilidad",
           "operador": "igual",
           "valor": true
         },
         {
           "hecho": "edad",
-          "operador": "menor",
-          "valor": 1
+          "operador": "igual",
+          "valor": "cachorro"
         }
       ],
       "resultados": [
@@ -646,20 +936,20 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria para análisis coprológico y desparasitación.",
-      "prioridad": 7,
-      "explicacion": "Los animales jóvenes son especialmente susceptibles a las infestaciones parasitarias gastrointestinales que causan diarrea.",
-      "fuente": "Parasitología Veterinaria de Bowman",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "El bajo peso y la debilidad en animales muy jóvenes son signos comunes de una alta carga parasitaria.",
+      "fuente": "Veterinary Parasitology (Foreyt)",
       "generada_por": "gemini",
       "estado": "activa"
     },
     {
-      "id": "R020",
+      "id": "R029",
       "categoria": "enfermedad_sistemica",
       "especies_aplicables": [
         "cualquier_especie"
       ],
-      "descripcion": "Sugiere enfermedad sistémica si hay fiebre y debilidad sin síntomas específicos.",
+      "descripcion": "Sospecha de enfermedad sistémica en animales geriátricos con fiebre y debilidad.",
       "condiciones": [
         {
           "hecho": "fiebre",
@@ -672,14 +962,9 @@
           "valor": true
         },
         {
-          "hecho": "vomitos",
+          "hecho": "edad",
           "operador": "igual",
-          "valor": false
-        },
-        {
-          "hecho": "tos",
-          "operador": "igual",
-          "valor": false
+          "valor": "anciano"
         }
       ],
       "resultados": [
@@ -688,10 +973,1110 @@
           "valor": true
         }
       ],
-      "recomendacion": "Solicitar evaluación veterinaria exhaustiva para identificar la causa subyacente de la enfermedad sistémica.",
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "En animales mayores, la combinación de fiebre y debilidad puede indicar una enfermedad sistémica grave, como una infección profunda o un proceso neoplásico.",
+      "fuente": "Geriatric Veterinary Medicine (Hoskins)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R030",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "perro",
+        "gato",
+        "caballo",
+        "bovino"
+      ],
+      "descripcion": "Indica posible neumonía en animales jóvenes con tos y dificultad respiratoria.",
+      "condiciones": [
+        {
+          "hecho": "tos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "dificultad_respiratoria",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "cachorro",
+            "joven"
+          ]
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_neumonia",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Los animales jóvenes son particularmente susceptibles a desarrollar neumonía a partir de infecciones respiratorias.",
+      "fuente": "Large Animal Internal Medicine (Bradford Smith)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R031",
+      "categoria": "enfermedad_dermatologica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de dermatitis de contacto por exposición a tóxicos.",
+      "condiciones": [
+        {
+          "hecho": "problemas_piel",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "exposicion_toxico",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_dermatitis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
       "prioridad": 6,
-      "explicacion": "Fiebre y debilidad generalizada, sin signos localizados claros, pueden indicar una enfermedad que afecta a múltiples sistemas corporales.",
-      "fuente": "Texto de Medicina Interna Veterinaria",
+      "explicacion": "La exposición a irritantes o alérgenos puede causar dermatitis de contacto.",
+      "fuente": "Small Animal Dermatology (Muller & Kirk)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R032",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica deshidratación debido a la pérdida excesiva de líquidos por vómitos y diarrea.",
+      "condiciones": [
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_liquidos",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_deshidratacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Vómitos y diarrea severos son causas directas de deshidratación.",
+      "fuente": "Fluid, Electrolyte, and Acid-Base Disorders in Small Animal Practice (DiBartola)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R033",
+      "categoria": "enfermedad_urinaria",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Sospecha de infección urinaria complicada en animales geriátricos con dificultad para orinar y debilidad.",
+      "condiciones": [
+        {
+          "hecho": "dificultad_orinar",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_urinaria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Animales mayores con estos signos pueden tener infecciones urinarias más difíciles de resolver o indicativas de patologías subyacentes.",
+      "fuente": "Textbook of Veterinary Internal Medicine (Ettinger & Feldman)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R034",
+      "categoria": "enfermedad_neurologica",
+      "especies_aplicables": [
+        "perro"
+      ],
+      "descripcion": "Indica posible problema neurológico grave (epilepsia, tumor) en perros grandes con convulsiones.",
+      "condiciones": [
+        {
+          "hecho": "convulsiones",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "peso",
+          "operador": "mayor_igual",
+          "valor": 20
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_problema_neurologico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Ciertas razas de perros grandes tienen predisposición a epilepsia o tumores cerebrales manifestados por convulsiones.",
+      "fuente": "Small Animal Neurology (Oliver & Lorenz)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R035",
+      "categoria": "enfermedad_dermatologica",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Sospecha de dermatitis crónica o alérgica en animales geriátricos con problemas de piel.",
+      "condiciones": [
+        {
+          "hecho": "problemas_piel",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_dermatitis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "Los problemas de piel en animales mayores pueden ser exacerbaciones de condiciones crónicas o nuevas alergias.",
+      "fuente": "Small Animal Dermatology (Muller & Kirk)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R036",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Indica posible infección respiratoria o problema cardíaco/bronquitis crónica en animales geriátricos con tos.",
+      "condiciones": [
+        {
+          "hecho": "tos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_respiratoria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La tos en animales mayores puede ser multifactorial, incluyendo infecciones o enfermedades cardíacas/pulmonares degenerativas.",
+      "fuente": "Textbook of Veterinary Internal Medicine (Ettinger & Feldman)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R037",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica deshidratación generalizada por debilidad y pérdida de líquidos.",
+      "condiciones": [
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_liquidos",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_deshidratacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La pérdida de líquidos y la debilidad son signos directos de deshidratación.",
+      "fuente": "Fluid, Electrolyte, and Acid-Base Disorders in Small Animal Practice (DiBartola)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R038",
+      "categoria": "enfermedad_traumatica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de lesión traumática infectada si hay herida visible y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "herida_visible",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_lesion_traumatica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La fiebre en presencia de una herida indica una posible infección secundaria.",
+      "fuente": "Veterinary Trauma and Critical Care (Silverstein & Hopper)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R039",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Indica posible enfermedad sistémica, como renal, si hay vómitos y dificultad para orinar.",
+      "condiciones": [
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "dificultad_orinar",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_enfermedad_sistemica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Vómitos y problemas urinarios son signos de enfermedad renal o sistémica grave.",
+      "fuente": "Textbook of Veterinary Internal Medicine (Ettinger & Feldman)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R040",
+      "categoria": "enfermedad_parasitaria",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de parasitosis en animales jóvenes con diarrea y bajo peso.",
+      "condiciones": [
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "peso",
+          "operador": "menor",
+          "valor": 5
+        },
+        {
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "cachorro",
+            "joven"
+          ]
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_parasitosis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La diarrea y el bajo peso en animales jóvenes son signos clásicos de parasitosis intestinal.",
+      "fuente": "Veterinary Parasitology (Foreyt)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R041",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "perro",
+        "gato",
+        "caballo"
+      ],
+      "descripcion": "Indica posible neumonía o enfermedad cardíaca en animales geriátricos con dificultad respiratoria.",
+      "condiciones": [
+        {
+          "hecho": "dificultad_respiratoria",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_neumonia",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "La disnea en animales mayores puede ser causada por neumonía, edema pulmonar cardiogénico u otras condiciones.",
+      "fuente": "Textbook of Veterinary Internal Medicine (Ettinger & Feldman)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R042",
+      "categoria": "enfermedad_dermatologica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de dermatitis severa o necrótica por tóxicos con fiebre.",
+      "condiciones": [
+        {
+          "hecho": "problemas_piel",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "exposicion_toxico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_dermatitis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "La combinación sugiere una reacción tóxica severa con inflamación sistémica.",
+      "fuente": "Veterinary Toxicology (Peterson, Talcott, Mount)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R043",
+      "categoria": "enfermedad_neurologica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible problema neurológico como encefalitis si hay convulsiones y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "convulsiones",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_problema_neurologico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "La fiebre y las convulsiones son signos de inflamación o infección del sistema nervioso central.",
+      "fuente": "Small Animal Neurology (Oliver & Lorenz)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R044",
+      "categoria": "enfermedad_traumatica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de lesión traumática abdominal o pélvica si hay herida visible y dificultad para orinar.",
+      "condiciones": [
+        {
+          "hecho": "herida_visible",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "dificultad_orinar",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_lesion_traumatica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Una herida en el área abdominal/pélvica que afecta la micción sugiere daño a la vejiga o uretra.",
+      "fuente": "Veterinary Trauma and Critical Care (Silverstein & Hopper)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R045",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible enfermedad sistémica crónica en animales geriátricos con debilidad y bajo peso.",
+      "condiciones": [
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        },
+        {
+          "hecho": "peso",
+          "operador": "menor",
+          "valor": 0.9
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_enfermedad_sistemica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "El bajo peso y debilidad en animales mayores son signos de enfermedades crónicas, incluyendo cáncer o insuficiencia orgánica.",
+      "fuente": "Geriatric Veterinary Medicine (Hoskins)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R046",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Sospecha de gastroenteritis en animales geriátricos con síndrome digestivo.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_digestivo",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_gastroenteritis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 6,
+      "explicacion": "Los animales mayores pueden desarrollar gastroenteritis por diversas causas, incluyendo cambios dietéticos o sensibilidad intestinal.",
+      "fuente": "Geriatric Veterinary Medicine (Hoskins)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R047",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Indica posible neumonía o enfermedad cardíaca en animales con sobrepeso y síndrome respiratorio.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_respiratorio",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "peso",
+          "operador": "mayor",
+          "valor": 25
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_neumonia",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "El sobrepeso puede exacerbar los problemas respiratorios y cardíacos, aumentando el riesgo de neumonía o edema pulmonar.",
+      "fuente": "Textbook of Veterinary Internal Medicine (Ettinger & Feldman)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R048",
+      "categoria": "enfermedad_dermatologica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de infestación externa en animales jóvenes con problemas de piel.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_cutaneo",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "cachorro",
+            "joven",
+            "muy_joven"
+          ]
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infestacion_externa",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 5,
+      "explicacion": "Los animales jóvenes son más susceptibles a parásitos externos.",
+      "fuente": "Veterinary Parasitology (Foreyt)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R049",
+      "categoria": "toxicologia",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible intoxicación con efectos neurológicos tras exposición a tóxicos y síndrome neurológico.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_neurologico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "exposicion_toxico",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_intoxicacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 10,
+      "explicacion": "Los signos neurológicos después de la exposición a tóxicos son una indicación de intoxicación severa.",
+      "fuente": "Veterinary Toxicology (Peterson, Talcott, Mount)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R050",
+      "categoria": "enfermedad_urinaria",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de infección urinaria o fallo renal si hay síndrome urinario y debilidad.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_urinario",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_urinaria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "La debilidad en conjunto con problemas urinarios puede indicar una afección renal o una infección severa.",
+      "fuente": "Canine and Feline Nephrology and Urology (Osborne & Finco)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R051",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible enfermedad sistémica (sepsis) en trauma con fiebre y debilidad.",
+      "condiciones": [
+        {
+          "hecho": "sindrome_traumatico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_enfermedad_sistemica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Un trauma complicado con fiebre y debilidad sugiere una infección sistémica o sepsis.",
+      "fuente": "Veterinary Trauma and Critical Care (Silverstein & Hopper)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R052",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Sospecha de enfermedad sistémica en animales geriátricos con vómitos y bajo peso.",
+      "condiciones": [
+        {
+          "hecho": "vomitos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "peso",
+          "operador": "menor",
+          "valor": 0.8
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_enfermedad_sistemica",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 8,
+      "explicacion": "Vómitos crónicos y pérdida de peso en animales mayores pueden indicar enfermedades gastrointestinales, renales o neoplásicas.",
+      "fuente": "Geriatric Veterinary Medicine (Hoskins)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R053",
+      "categoria": "enfermedad_digestiva",
+      "especies_aplicables": [
+        "perro",
+        "gato"
+      ],
+      "descripcion": "Indica posible gastroenteritis viral en animales jóvenes con diarrea y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "cachorro",
+            "joven"
+          ]
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_gastroenteritis",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Diarrea y fiebre en cachorros/gatitos son signos de enfermedades virales altamente contagiosas.",
+      "fuente": "Small Animal Internal Medicine (Nelson & Couto)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R054",
+      "categoria": "enfermedad_respiratoria",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de neumonía en animales geriátricos con dificultad respiratoria y debilidad.",
+      "condiciones": [
+        {
+          "hecho": "dificultad_respiratoria",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "anciano"
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_neumonia",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "La debilidad en conjunto con problemas respiratorios en animales mayores aumenta el riesgo y la severidad de la neumonía.",
+      "fuente": "Geriatric Veterinary Medicine (Hoskins)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R055",
+      "categoria": "enfermedad_dermatologica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible infestación externa severa en animales con problemas de piel y bajo peso.",
+      "condiciones": [
+        {
+          "hecho": "problemas_piel",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "peso",
+          "operador": "menor",
+          "valor": 1
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infestacion_externa",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Infestaciones severas de parásitos externos pueden causar pérdida de peso y problemas cutáneos significativos.",
+      "fuente": "Veterinary Parasitology (Foreyt)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R056",
+      "categoria": "enfermedad_traumatica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de fractura con infección si hay herida visible, incapacidad para caminar y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "herida_visible",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "puede_caminar",
+          "operador": "igual",
+          "valor": false
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_fractura",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Una fractura expuesta o complicada por infección puede presentar estos síntomas.",
+      "fuente": "Veterinary Surgery: Small Animal (Tobias & Johnston)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R057",
+      "categoria": "toxicologia",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Indica posible intoxicación si hay exposición a tóxicos, debilidad y diarrea.",
+      "condiciones": [
+        {
+          "hecho": "exposicion_toxico",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "diarrea",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_intoxicacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Muchos tóxicos causan signos gastrointestinales y debilidad generalizada.",
+      "fuente": "Veterinary Toxicology (Peterson, Talcott, Mount)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R058",
+      "categoria": "enfermedad_urinaria",
+      "especies_aplicables": [
+        "perro",
+        "gato",
+        "roedor"
+      ],
+      "descripcion": "Sospecha de infección urinaria en animales jóvenes y pequeños con dificultad para orinar.",
+      "condiciones": [
+        {
+          "hecho": "dificultad_orinar",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "edad",
+          "operador": "en",
+          "valor": [
+            "cachorro",
+            "joven"
+          ]
+        },
+        {
+          "hecho": "peso",
+          "operador": "menor",
+          "valor": 1
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_infeccion_urinaria",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 7,
+      "explicacion": "Animales jóvenes y pequeños son susceptibles a infecciones urinarias, que pueden ser graves.",
+      "fuente": "Ferrets, Rabbits, and Rodents: Clinical Medicine and Surgery (Quesenberry & Carpenter)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R059",
+      "categoria": "enfermedad_neurologica",
+      "especies_aplicables": [
+        "perro",
+        "gato",
+        "roedor"
+      ],
+      "descripcion": "Indica posible problema neurológico como hipoglucemia o congénito en crías pequeñas con convulsiones.",
+      "condiciones": [
+        {
+          "hecho": "convulsiones",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "peso",
+          "operador": "menor",
+          "valor": 0.5
+        },
+        {
+          "hecho": "edad",
+          "operador": "igual",
+          "valor": "muy_joven"
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_problema_neurologico",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 9,
+      "explicacion": "Las convulsiones en animales muy jóvenes y de bajo peso son a menudo asociadas con hipoglucemia o defectos congénitos.",
+      "fuente": "Small Animal Pediatrics (Nappier & Peterson)",
+      "generada_por": "gemini",
+      "estado": "activa"
+    },
+    {
+      "id": "R060",
+      "categoria": "enfermedad_sistemica",
+      "especies_aplicables": [
+        "cualquier_especie"
+      ],
+      "descripcion": "Sospecha de deshidratación severa con infección sistémica si hay debilidad, pérdida de líquidos y fiebre.",
+      "condiciones": [
+        {
+          "hecho": "debilidad",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "perdida_liquidos",
+          "operador": "igual",
+          "valor": true
+        },
+        {
+          "hecho": "fiebre",
+          "operador": "igual",
+          "valor": true
+        }
+      ],
+      "resultados": [
+        {
+          "hecho": "posible_deshidratacion",
+          "valor": true
+        }
+      ],
+      "recomendacion": "Solicitar evaluación veterinaria para confirmar o descartar la condición.",
+      "prioridad": 10,
+      "explicacion": "La combinación de estos tres signos indica un cuadro sistémico grave que requiere atención inmediata.",
+      "fuente": "Fluid, Electrolyte, and Acid-Base Disorders in Small Animal Practice (DiBartola)",
       "generada_por": "gemini",
       "estado": "activa"
     }
